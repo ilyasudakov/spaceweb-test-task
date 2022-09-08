@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import styles from "./Layout.module.scss";
 
 import useWindowSize from "../../hooks/useWindowSize";
+import Footer from "./Footer/Footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { width } = useWindowSize();
@@ -22,6 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Header isMinimized={isMinimized} setIsMinimized={setIsMinimized} />
         <div className={styles.content}>{children}</div>
       </div>
+      <Footer />
     </div>
   );
 }
