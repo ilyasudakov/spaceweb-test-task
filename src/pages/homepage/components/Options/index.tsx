@@ -3,11 +3,12 @@ import { AppDispatch, RootState } from "../../../../store";
 import { fetchOptions } from "./optionsActions";
 import { useEffect } from "react";
 import Card from "../Card";
+import styles from "./Options.module.scss";
 
 function Options({ data, status, fetchOptions }: Props) {
   const { vpsPlans } = data;
   useEffect(() => {
-    console.log(status, data);
+    console.log(status, vpsPlans);
     if (status === "idle") {
       fetchOptions();
     }
@@ -15,11 +16,11 @@ function Options({ data, status, fetchOptions }: Props) {
 
   if (status === "loading") return <div>Загрузка...</div>;
   return (
-    <>
+    <div className={styles.container}>
       {vpsPlans.map((plan) => (
         <Card key={plan.id} plan={plan} />
       ))}
-    </>
+    </div>
   );
 }
 
