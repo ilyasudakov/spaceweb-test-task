@@ -1,4 +1,4 @@
-import Sidemenu from "./Sidemenu";
+import Sidemenu from "./Sidemenu/Sidemenu";
 
 import styles from "./Layout.module.scss";
 import Header from "./Header";

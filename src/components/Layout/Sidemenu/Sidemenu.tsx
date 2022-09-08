@@ -1,7 +1,8 @@
 import styles from "./Sidemenu.module.scss";
-import { ReactComponent as Logo } from "../../assets/logo_sweb.svg";
+import { ReactComponent as Logo } from "../../../assets/logo_sweb.svg";
 import { useState } from "react";
-import NAV, { NavType } from "./Sidemenu/nav";
+import NAV, { NavType } from "./nav";
+import HamburgerButton from "./HamburgerButton";
 
 export default function Sidemenu() {
   const [isMinimized, setIsMinimized] = useState(false);
@@ -12,14 +13,7 @@ export default function Sidemenu() {
     >
       <div className={styles.top}>
         <Logo />
-        <div
-          onClick={() => setIsMinimized(!isMinimized)}
-          className={styles.hamburger}
-        >
-          <div />
-          <div />
-          <div />
-        </div>
+        <HamburgerButton onClick={() => setIsMinimized(!isMinimized)} />
       </div>
       <ul className={styles.list}>
         {NAV.map((data) => (

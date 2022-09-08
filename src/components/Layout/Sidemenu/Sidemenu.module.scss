@@ -19,21 +19,6 @@
     margin-bottom: 2.5rem;
 }
 
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 0.2rem;
-
-    & > div {
-        width: 20px;
-        height: 2px;
-        background: #fff;
-        border-radius: 1px;
-    }
-}
-
 .minimized {
     max-width: 68px;
 
