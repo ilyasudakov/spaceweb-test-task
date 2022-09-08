@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background: #f7fafb;
+    padding: 0 2rem;
+
+    ul {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        font-size: 0.6rem;
+        color: #7a8185;
+        gap: 1.5rem;
+
+        li {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+}
