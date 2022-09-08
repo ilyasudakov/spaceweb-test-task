@@ -14,7 +14,12 @@ export default function SelectInput({
   return (
     <div>
       <label
-        style={{ fontSize: "0.6rem", color: "#7A8185", marginBottom: "0.6rem" }}
+        style={{
+          display: "block",
+          fontSize: "0.6rem",
+          color: "#7A8185",
+          marginBottom: "0.6rem",
+        }}
       >
         {label}
       </label>

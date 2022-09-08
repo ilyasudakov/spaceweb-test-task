@@ -1,19 +1,19 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { CATEGORY_SELECTED } from "./categoryAction";
 
-export const categories = ["Все", "NVM", "HDD", "TURBO"] as const;
+export const categories = ["все", "nvme", "hdd", "turbo"] as const;
 
 type CategoryType = {
   selected: typeof categories[number];
   categories: { value: typeof categories[number]; label: string }[];
 };
 const initialState: CategoryType = {
-  selected: "Все",
+  selected: "все",
   categories: [
-    { value: "Все", label: "Все" },
-    { value: "NVM", label: "NVMe (KVM)" },
-    { value: "HDD", label: "Большого объема (HDD)" },
-    { value: "TURBO", label: "HighCPU (TURBO)" },
+    { value: "все", label: "Все" },
+    { value: "nvme", label: "NVMe (KVM)" },
+    { value: "hdd", label: "Большого объема (HDD)" },
+    { value: "turbo", label: "HighCPU (TURBO)" },
   ],
 };
 

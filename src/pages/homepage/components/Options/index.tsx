@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Card from "../Card";
 import styles from "./Options.module.scss";
 
-function Options({ data, status, fetchOptions }: Props) {
+function Options({ data, status, fetchOptions, selected }: Props) {
   const { vpsPlans } = data;
   useEffect(() => {
     console.log(status, vpsPlans);
@@ -17,15 +17,23 @@ function Options({ data, status, fetchOptions }: Props) {
   if (status === "loading") return <div>Загрузка...</div>;
   return (
     <div className={styles.container}>
-      {vpsPlans.map((plan) => (
-        <Card key={plan.id} plan={plan} />
-      ))}
+      {vpsPlans
+        .filter(({ category }) => {
+          if (selected === "все") return true;
+          return category === selected;
+        })
+        .map((plan) => (
+          <Card key={plan.id} plan={plan} />
+        ))}
     </div>
   );
 }
 
 const connector = connect(
-  (state: RootState) => ({ ...state.options }),
+  (state: RootState) => ({
+    ...state.options,
+    selected: state.categories.selected,
+  }),
   (dispatch: AppDispatch) => ({
     fetchOptions: () => dispatch(fetchOptions()),
   })
