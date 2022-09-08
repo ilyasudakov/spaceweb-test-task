@@ -10,7 +10,7 @@ import { ReactComponent as PlusIcon } from "../../../../assets/icon_plus.svg";
 
 import { connect, ConnectedProps } from "react-redux";
 import { OptionsStateType } from "../Options/optionsReducer";
-import { changeOS } from "../Options/optionsActions";
+import { changeOS, changePanel } from "../Options/optionsActions";
 
 type VPS = OptionsStateType["data"]["vpsPlans"][number];
 type OS = OptionsStateType["data"]["selectOs"];
@@ -45,10 +45,13 @@ function Card({
     volume_disk,
     category,
     id,
+    selected,
+    selectedPanel,
   },
   os,
   panel,
   changeOS,
+  changePanel,
 }: Props) {
   return (
     <div
@@ -68,14 +71,14 @@ function Card({
       <SelectInput
         label="Дистрибутив"
         options={os}
-        defaultValue={os[0] ?? []}
+        defaultValue={os.find(({ id }) => id === selected)}
         onChange={({ value }) => changeOS(id, value)}
       />
       <SelectInput
         label="Программное обеспечение"
         options={panel}
-        defaultValue={panel[0] ?? []}
-        onChange={() => {}}
+        defaultValue={panel.find(({ id }) => id === selectedPanel)}
+        onChange={({ value }) => changePanel(id, value)}
       />
       <DataCenter label1="Санкт-Петербург" label2="Москва" />
       <Bonus bonus={CATEGORIES[category].bonus} />
@@ -96,7 +99,7 @@ const connector = connect(
     os: ownProps.os,
     panel: ownProps.panel,
   }),
-  { changeOS }
+  { changeOS, changePanel }
 );
 type Props = ConnectedProps<typeof connector>;
 export default connector(Card);

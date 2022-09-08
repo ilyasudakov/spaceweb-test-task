@@ -25,7 +25,7 @@ export default function SelectInput({
       </label>
       <Select
         options={options}
-        defaultValue={defaultValue}
+        value={defaultValue}
         onChange={onChange}
         styles={{
           container: (provided, state) => ({

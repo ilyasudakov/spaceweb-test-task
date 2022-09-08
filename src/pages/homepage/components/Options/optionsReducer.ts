@@ -36,7 +36,10 @@ export default function optionsReducer(
   switch (action.type) {
     case `${OPTIONS_ACTIONS.FETCH}/pending`:
       return { ...state, status: "loading" };
-    case OPTIONS_ACTIONS.CHANGE_OS:
+    case OPTIONS_ACTIONS.CHANGE_OS: {
+      const availablePanels = state.data.selectOs.find(
+        ({ id }) => id === action.payload.value
+      );
       return {
         ...state,
         data: {
@@ -44,12 +47,38 @@ export default function optionsReducer(
           vpsPlans: [
             ...state.data.vpsPlans.map((os) =>
               os.id === action.payload.id
-                ? { ...os, selected: action.payload.value }
+                ? {
+                    ...os,
+                    selected: action.payload.value,
+                    selectedPanel: !availablePanels?.panel_type.includes(
+                      state.data.vpsPlans.find(
+                        ({ id }) => id === action.payload.id
+                      )?.selectedPanel || "20"
+                    )
+                      ? "7"
+                      : os.selectedPanel,
+                  }
                 : os
             ),
           ],
         },
       };
+    }
+    case OPTIONS_ACTIONS.CHANGE_PANEL: {
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          vpsPlans: [
+            ...state.data.vpsPlans.map((os) =>
+              os.id === action.payload.id
+                ? { ...os, selectedPanel: action.payload.value }
+                : os
+            ),
+          ],
+        },
+      };
+    }
     case `${OPTIONS_ACTIONS.FETCH}/fulfilled`:
       return {
         ...state,
@@ -59,6 +88,7 @@ export default function optionsReducer(
             ...action.payload.vpsPlans.map((os: any) => ({
               ...os,
               selected: "20",
+              selectedPanel: "7",
             })),
           ],
         },
@@ -93,7 +123,8 @@ export interface VpsPlan {
   datacenters: number[];
   price_per_month_promo: number;
   year_price_per_month_promo: number;
-  selected?: string;
+  selected: string;
+  selectedPanel: string;
 }
 
 export interface SelectO {
