@@ -5,17 +5,17 @@ import { ReactComponent as NVMeIcon } from "../../../../assets/tariff_nvme 1.svg
 import { ReactComponent as HDDIcon } from "../../../../assets/tariff_hdd 1.svg";
 import { ReactComponent as TurboIcon } from "../../../../assets/tariff_turbo 1.svg";
 import styles from "./Card.module.scss";
+import { useState } from "react";
 
 type VPS = OptionsStateType["data"]["vpsPlans"][number];
 type OS = OptionsStateType["data"]["selectOs"];
 type PANEL = OptionsStateType["data"]["selectPanel"];
 
-const CATEGORY_ICONS: { [s in string]: { icon: React.ReactNode; bg: string } } =
-  {
-    nvme: { icon: <NVMeIcon />, bg: "#E0F6FC" },
-    hdd: { icon: <HDDIcon />, bg: "#C4EBF8" },
-    turbo: { icon: <TurboIcon />, bg: "#ECFDF7" },
-  };
+const CATEGORIES: { [s in string]: { icon: React.ReactNode; bg: string } } = {
+  nvme: { icon: <NVMeIcon />, bg: "#E0F6FC" },
+  hdd: { icon: <HDDIcon />, bg: "#C4EBF8" },
+  turbo: { icon: <TurboIcon />, bg: "#ECFDF7" },
+};
 
 export default function Card({
   plan: {
@@ -37,10 +37,10 @@ export default function Card({
   return (
     <div
       className={styles.container}
-      style={{ backgroundColor: CATEGORY_ICONS[category].bg }}
+      style={{ backgroundColor: CATEGORIES[category].bg }}
     >
       <div className={styles.type}>
-        {CATEGORY_ICONS[category].icon}
+        {CATEGORIES[category].icon}
         {name}
       </div>
       <div className={styles.price}>{`${price_per_month} ₽/мес.`}</div>
@@ -61,6 +61,7 @@ export default function Card({
         defaultValue={panel[0] ?? []}
         onChange={() => {}}
       />
+      <DataCenter label1="Санкт-Петербург" label2="Москва" />
       <Button>Заказать</Button>
     </div>
   );
@@ -72,5 +73,28 @@ const Hardware = ({ label, text }: { label: string; text: string }) => {
       <span>{label}</span>
       <div>{text}</div>
     </li>
+  );
+};
+
+const DataCenter = ({ label1, label2 }: { label1: string; label2: string }) => {
+  const [selected, setSelected] = useState(label1);
+  return (
+    <div className={styles.datacenter}>
+      <span>Дата-центр</span>
+      <div className={styles.datacenter_switch}>
+        <div
+          onClick={() => setSelected(label1)}
+          className={selected === label1 ? styles.datacenter_selected : ""}
+        >
+          {label1}
+        </div>
+        <div
+          onClick={() => setSelected(label2)}
+          className={selected === label2 ? styles.datacenter_selected : ""}
+        >
+          {label2}
+        </div>
+      </div>
+    </div>
   );
 };

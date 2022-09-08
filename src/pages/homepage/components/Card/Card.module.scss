@@ -1,6 +1,7 @@
 .container {
     display: grid;
     gap: 0.8rem;
+    min-width: 230px;
     max-width: 232px;
     background: #e0f6fc;
     padding: 1rem;
@@ -32,6 +33,35 @@
         & > span {
             color: #62686c;
             font-size: 0.6rem;
+        }
+    }
+
+    .datacenter {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.6rem;
+
+        & > span {
+            color: #62686c;
+            margin-bottom: 0.4rem;
+        }
+
+        &_switch {
+            justify-content: space-between;
+            display: flex;
+            background: #fff;
+            border-radius: 0.5rem;
+            border: 1px solid #3dbdf6;
+
+            & > div {
+                cursor: pointer;
+                border-radius: 0.5rem;
+                padding: 0.1rem 0.5rem;
+            }
+
+            .datacenter_selected {
+                background: #3dbdf6;
+            }
         }
     }
 
