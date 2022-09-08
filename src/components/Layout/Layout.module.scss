@@ -2,7 +2,6 @@
     display: flex;
     min-height: 100%;
     height: fit-content;
-    overflow-x: hidden;
     position: relative;
 }
 
@@ -26,6 +25,7 @@
     background: #fff;
     margin: 0 1rem;
     box-shadow: 1px 1px 4px #e3e9ec;
+    margin-bottom: 100px;
 }
 
 @media (max-width: 768px) {
@@ -37,5 +37,12 @@
     }
     .content {
         margin: 0;
+        margin-bottom: 150px;
+    }
+}
+
+@media (max-width: 500px) {
+    .content {
+        margin-bottom: 210px;
     }
 }

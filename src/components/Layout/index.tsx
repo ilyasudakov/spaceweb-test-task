@@ -22,8 +22,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className={`${styles.main} ${isMinimized && styles.main_max}`}>
         <Header isMinimized={isMinimized} setIsMinimized={setIsMinimized} />
         <div className={styles.content}>{children}</div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
