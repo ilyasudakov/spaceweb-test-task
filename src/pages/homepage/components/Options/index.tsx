@@ -2,16 +2,25 @@ import { connect, ConnectedProps } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store";
 import { fetchOptions } from "./optionsActions";
 import { useEffect } from "react";
+import Card from "../Card";
 
 function Options({ data, status, fetchOptions }: Props) {
-  console.log(status, data);
+  const { vpsPlans } = data;
   useEffect(() => {
-    if (status === "idle" && data.length > 0) {
+    console.log(status, data);
+    if (status === "idle") {
       fetchOptions();
     }
   }, [data]);
 
-  return null;
+  if (status === "loading") return <div>Загрузка...</div>;
+  return (
+    <>
+      {vpsPlans.map((plan) => (
+        <Card key={plan.id} plan={plan} />
+      ))}
+    </>
+  );
 }
 
 const connector = connect(

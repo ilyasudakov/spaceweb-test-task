@@ -12,13 +12,13 @@ export const fetchOptions = createAsyncThunk<
   undefined,
   { state: RootState }
 >(OPTIONS_ACTIONS.FETCH, async () => {
-  const { data } = await axios.post(`https://api.sweb.ru/notAuthorized/`, {
-    jsonrpc: "2.0",
-    method: "vpsOsConfig",
-    params: {},
-  });
-
-  console.log(data);
-
-  return data;
+  const { data } = await axios.post(
+    `https://corsanywhere.herokuapp.com/https://api.sweb.ru/notAuthorized/`,
+    {
+      jsonrpc: "2.0",
+      method: "vpsOsConfig",
+      params: {},
+    }
+  );
+  return data.result;
 });
