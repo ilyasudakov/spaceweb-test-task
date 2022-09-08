@@ -6,6 +6,11 @@
     width: 100%;
     max-width: 1000px;
 
+    @media (max-width: 1220px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     @media (max-width: 768px) {
         display: flex;
         flex-wrap: wrap;
