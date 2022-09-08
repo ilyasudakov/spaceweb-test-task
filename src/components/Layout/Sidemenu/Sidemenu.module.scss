@@ -93,3 +93,9 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .minimized {
+        left: -200px;
+    }
+}

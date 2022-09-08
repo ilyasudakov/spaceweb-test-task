@@ -4,16 +4,20 @@ import { useState } from "react";
 import NAV, { NavType } from "./nav";
 import HamburgerButton from "./HamburgerButton";
 
-export default function Sidemenu() {
-  const [isMinimized, setIsMinimized] = useState(false);
-
+export default function Sidemenu({
+  isMinimized,
+  setIsMinimized,
+}: {
+  isMinimized: boolean;
+  setIsMinimized: (isMinimized: boolean) => void;
+}) {
   return (
     <div
       className={`${styles.container} ${isMinimized ? styles.minimized : ""}`}
     >
       <div className={styles.top}>
         <Logo />
-        <HamburgerButton onClick={() => setIsMinimized(!isMinimized)} />
+        {<HamburgerButton onClick={() => setIsMinimized(!isMinimized)} />}
       </div>
       <ul className={styles.list}>
         {NAV.map((data) => (
@@ -26,8 +30,6 @@ export default function Sidemenu() {
 
 const NavItem = ({ icon, isPromoted, text, nav }: NavType) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
-  console.log(nav);
-
   return (
     <li className={`${styles.list_item} ${isPromoted && styles.nav_promoted}`}>
       <span

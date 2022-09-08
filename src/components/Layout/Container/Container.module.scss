@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.header {
+    h2 {
+        font-size: 0.6rem;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
+    }
+    h1 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background: #f7fafb;
+}
+
+.content {
+    padding: 0.8rem 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 0.8rem;
+    }
+}
