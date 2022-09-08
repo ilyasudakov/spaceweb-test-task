@@ -72,6 +72,9 @@
         font-size: 0.6rem;
     }
 
+    @media (max-width: 500px) {
+        max-width: 300px;
+    }
     @media (max-width: 375px) {
         max-width: 100%;
     }

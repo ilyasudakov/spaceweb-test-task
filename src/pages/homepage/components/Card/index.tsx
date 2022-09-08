@@ -1,6 +1,5 @@
 import Button from "../../../../components/Form/Button/Button";
 import SelectInput from "../../../../components/Form/SelectInput";
-import { OptionsStateType } from "../Options/optionsReducer";
 import styles from "./Card.module.scss";
 import React, { useState } from "react";
 
@@ -8,6 +7,10 @@ import { ReactComponent as NVMeIcon } from "../../../../assets/tariff_nvme 1.svg
 import { ReactComponent as HDDIcon } from "../../../../assets/tariff_hdd 1.svg";
 import { ReactComponent as TurboIcon } from "../../../../assets/tariff_turbo 1.svg";
 import { ReactComponent as PlusIcon } from "../../../../assets/icon_plus.svg";
+
+import { connect, ConnectedProps } from "react-redux";
+import { OptionsStateType } from "../Options/optionsReducer";
+import { changeOS } from "../Options/optionsActions";
 
 type VPS = OptionsStateType["data"]["vpsPlans"][number];
 type OS = OptionsStateType["data"]["selectOs"];
@@ -32,7 +35,7 @@ const CATEGORIES: {
   turbo: { icon: <TurboIcon />, bg: "#ECFDF7", bonus: defaultBonus },
 };
 
-export default function Card({
+function Card({
   plan: {
     name,
     price_per_month,
@@ -41,14 +44,12 @@ export default function Card({
     disk_type,
     volume_disk,
     category,
+    id,
   },
   os,
   panel,
-}: {
-  plan: VPS;
-  os: OS;
-  panel: PANEL;
-}) {
+  changeOS,
+}: Props) {
   return (
     <div
       className={styles.container}
@@ -68,7 +69,7 @@ export default function Card({
         label="Дистрибутив"
         options={os}
         defaultValue={os[0] ?? []}
-        onChange={() => {}}
+        onChange={({ value }) => changeOS(id, value)}
       />
       <SelectInput
         label="Программное обеспечение"
@@ -82,6 +83,23 @@ export default function Card({
     </div>
   );
 }
+const connector = connect(
+  (
+    _,
+    ownProps: {
+      plan: VPS;
+      os: OS;
+      panel: PANEL;
+    }
+  ) => ({
+    plan: ownProps.plan,
+    os: ownProps.os,
+    panel: ownProps.panel,
+  }),
+  { changeOS }
+);
+type Props = ConnectedProps<typeof connector>;
+export default connector(Card);
 
 const Hardware = ({ label, text }: { label: string; text: string }) => {
   return (

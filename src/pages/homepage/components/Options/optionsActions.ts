@@ -6,6 +6,8 @@ import { OptionsStateType } from "./optionsReducer";
 export const OPTIONS_ACTIONS = {
   ADD: "options/add",
   FETCH: "options/fetch",
+  CHANGE_OS: "options/changed_os",
+  CHANGE_PANEL: "options/changed_panel",
 };
 
 export const fetchOptions = createAsyncThunk<
@@ -24,4 +26,20 @@ export const fetchOptions = createAsyncThunk<
   return {
     ...data.result,
   };
+});
+
+export const changeOS = (id: number, value: string) => ({
+  type: OPTIONS_ACTIONS.CHANGE_OS,
+  payload: {
+    id,
+    value,
+  },
+});
+
+export const changePanel = (id: number, value: string) => ({
+  type: OPTIONS_ACTIONS.CHANGE_PANEL,
+  payload: {
+    id,
+    value,
+  },
 });

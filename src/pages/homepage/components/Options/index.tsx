@@ -28,6 +28,14 @@ function Options({ data, status, fetchOptions, selected }: Props) {
     if (selected === "все") return true;
     return category === selected;
   });
+  const filterPanels = (
+    panels: Props["data"]["selectPanel"],
+    selected: string = "0"
+  ) => {
+    const availablePanels = filteredOS.find(({ id }) => id === selected)
+      ?.panel_type || ["empty"];
+    return panels.filter(({ name }) => availablePanels.includes(name));
+  };
 
   if (status === "loading") return <div>Загрузка...</div>;
   return (
@@ -37,7 +45,7 @@ function Options({ data, status, fetchOptions, selected }: Props) {
           key={plan.id}
           plan={plan}
           os={filteredOS}
-          panel={filteredPanels}
+          panel={filterPanels(filteredPanels, plan.selected)}
         />
       ))}
     </div>

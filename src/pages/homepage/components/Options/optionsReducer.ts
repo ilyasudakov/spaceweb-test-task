@@ -36,10 +36,32 @@ export default function optionsReducer(
   switch (action.type) {
     case `${OPTIONS_ACTIONS.FETCH}/pending`:
       return { ...state, status: "loading" };
+    case OPTIONS_ACTIONS.CHANGE_OS:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          vpsPlans: [
+            ...state.data.vpsPlans.map((os) =>
+              os.id === action.payload.id
+                ? { ...os, selected: action.payload.value }
+                : os
+            ),
+          ],
+        },
+      };
     case `${OPTIONS_ACTIONS.FETCH}/fulfilled`:
       return {
         ...state,
-        data: { ...action.payload },
+        data: {
+          ...action.payload,
+          vpsPlans: [
+            ...action.payload.vpsPlans.map((os: any) => ({
+              ...os,
+              selected: "20",
+            })),
+          ],
+        },
         status: "success",
       };
     case `${OPTIONS_ACTIONS.FETCH}/rejected`:
@@ -71,6 +93,7 @@ export interface VpsPlan {
   datacenters: number[];
   price_per_month_promo: number;
   year_price_per_month_promo: number;
+  selected?: string;
 }
 
 export interface SelectO {
