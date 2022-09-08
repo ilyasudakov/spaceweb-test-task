@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     max-width: 211px;
-    background-color: #062436;
+    background-color: var(--dark-blue);
     height: 100%;
     position: fixed;
     top: 0;
@@ -70,7 +70,7 @@
     }
 
     .nav_promoted {
-        background-color: #3dbdf6;
+        background-color: var(--blue1);
 
         .nav_top {
             &:hover {

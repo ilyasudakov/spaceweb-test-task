@@ -36,7 +36,7 @@ export default function SelectInput({
           control: (provided, state) => ({
             ...provided,
             borderWidth: "2px",
-            borderColor: state.isFocused ? "#939DA2" : "#AFBABF",
+            borderColor: state.isFocused ? "#939DA2" : "var(--gray3)",
             "&:hover": {
               borderColor: "#939DA2",
             },
@@ -47,7 +47,7 @@ export default function SelectInput({
             color: "#000",
             backgroundColor: state.isSelected ? "#E3E9EC" : "#fff",
             "&:hover": {
-              backgroundColor: "#3DBDF6",
+              backgroundColor: "var(--blue1)",
               color: "#fff",
             },
           }),

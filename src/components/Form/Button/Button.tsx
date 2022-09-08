@@ -4,7 +4,7 @@ export default function Button({ children }: { children: React.ReactNode }) {
       style={{
         padding: "0.45rem 2rem",
         textTransform: "uppercase",
-        backgroundColor: "#3DBDF6",
+        backgroundColor: "var(--blue1)",
         border: "none",
         borderRadius: "0.1rem",
         color: "#fff",

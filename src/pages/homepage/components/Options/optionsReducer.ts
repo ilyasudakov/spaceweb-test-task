@@ -40,6 +40,10 @@ export default function optionsReducer(
       const availablePanels = state.data.selectOs.find(
         ({ id }) => id === action.payload.value
       );
+      const OSHasSelectedPanel = availablePanels?.panel_type.includes(
+        state.data.vpsPlans.find(({ id }) => id === action.payload.id)
+          ?.selectedPanel || "20"
+      );
       return {
         ...state,
         data: {
@@ -50,13 +54,7 @@ export default function optionsReducer(
                 ? {
                     ...os,
                     selected: action.payload.value,
-                    selectedPanel: !availablePanels?.panel_type.includes(
-                      state.data.vpsPlans.find(
-                        ({ id }) => id === action.payload.id
-                      )?.selectedPanel || "20"
-                    )
-                      ? "7"
-                      : os.selectedPanel,
+                    selectedPanel: !OSHasSelectedPanel ? "7" : os.selectedPanel,
                   }
                 : os
             ),

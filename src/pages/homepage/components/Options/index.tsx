@@ -37,7 +37,9 @@ function Options({ data, status, fetchOptions, selected }: Props) {
     return panels.filter(({ name }) => availablePanels.includes(name));
   };
 
-  if (status === "loading") return <div>Загрузка...</div>;
+  if (status === "loading")
+    return <div className={styles.loading}>Загрузка...</div>;
+  if (status === "error") return <div>Произошла ошибка</div>;
   return (
     <div className={styles.container}>
       {filteredData.map((plan) => (

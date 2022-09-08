@@ -51,7 +51,7 @@
             display: flex;
             background: #fff;
             border-radius: 0.5rem;
-            border: 1px solid #3dbdf6;
+            border: 1px solid var(--blue1);
 
             & > div {
                 cursor: pointer;
@@ -61,7 +61,7 @@
 
             .datacenter_selected {
                 color: #fff;
-                background: #3dbdf6;
+                background: var(--blue1);
             }
         }
     }
