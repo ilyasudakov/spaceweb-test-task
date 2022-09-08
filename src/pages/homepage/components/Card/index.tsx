@@ -4,11 +4,17 @@ import { OptionsStateType } from "../Options/optionsReducer";
 import styles from "./Card.module.scss";
 
 type VPS = OptionsStateType["data"]["vpsPlans"][number];
+type OS = OptionsStateType["data"]["selectOs"];
+type PANEL = OptionsStateType["data"]["selectPanel"];
 
 export default function Card({
   plan: { name, price_per_month, cpu_cores, ram, disk_type, volume_disk },
+  os,
+  panel,
 }: {
   plan: VPS;
+  os: OS;
+  panel: PANEL;
 }) {
   return (
     <div className={styles.container}>
@@ -21,14 +27,14 @@ export default function Card({
       </ul>
       <SelectInput
         label="Дистрибутив"
-        options={[]}
-        defaultValue={[]}
+        options={os}
+        defaultValue={os[0] ?? []}
         onChange={() => {}}
       />
       <SelectInput
         label="Программное обеспечение"
-        options={[]}
-        defaultValue={[]}
+        options={panel}
+        defaultValue={panel[0] ?? []}
         onChange={() => {}}
       />
       <Button>Заказать</Button>

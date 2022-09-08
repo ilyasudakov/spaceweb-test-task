@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../../../store";
+import { OptionsStateType } from "./optionsReducer";
 
 export const OPTIONS_ACTIONS = {
   ADD: "options/add",
@@ -8,7 +9,7 @@ export const OPTIONS_ACTIONS = {
 };
 
 export const fetchOptions = createAsyncThunk<
-  any,
+  OptionsStateType["data"],
   undefined,
   { state: RootState }
 >(OPTIONS_ACTIONS.FETCH, async () => {
@@ -20,5 +21,7 @@ export const fetchOptions = createAsyncThunk<
       params: {},
     }
   );
-  return data.result;
+  return {
+    ...data.result,
+  };
 });

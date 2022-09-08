@@ -6,25 +6,40 @@ import Card from "../Card";
 import styles from "./Options.module.scss";
 
 function Options({ data, status, fetchOptions, selected }: Props) {
-  const { vpsPlans } = data;
+  const { vpsPlans, selectOs, selectPanel } = data;
   useEffect(() => {
-    console.log(status, vpsPlans);
+    console.log(status, data);
     if (status === "idle") {
       fetchOptions();
     }
   }, [data]);
 
+  const filteredOS = selectOs.map((os) => ({
+    ...os,
+    value: os.id,
+    label: os.description,
+  }));
+  const filteredPanels = selectPanel.map((panel) => ({
+    ...panel,
+    value: panel.id,
+    label: panel.description,
+  }));
+  const filteredData = vpsPlans.filter(({ category }) => {
+    if (selected === "все") return true;
+    return category === selected;
+  });
+
   if (status === "loading") return <div>Загрузка...</div>;
   return (
     <div className={styles.container}>
-      {vpsPlans
-        .filter(({ category }) => {
-          if (selected === "все") return true;
-          return category === selected;
-        })
-        .map((plan) => (
-          <Card key={plan.id} plan={plan} />
-        ))}
+      {filteredData.map((plan) => (
+        <Card
+          key={plan.id}
+          plan={plan}
+          os={filteredOS}
+          panel={filteredPanels}
+        />
+      ))}
     </div>
   );
 }
