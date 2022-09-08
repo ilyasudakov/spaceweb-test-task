@@ -7,9 +7,13 @@ export default function Footer() {
   return (
     <footer className={styles.container}>
       <div className={styles.copyright}>
-        <div>© 2001–2022 ООО «СпейсВэб»</div>
+        <div>
+          © 2001–2022 ООО <a href="https://sweb.ru/">«СпейсВэб»</a>
+        </div>
         <div>Все права защищены.</div>
-        <div>Лицензия №163230</div>
+        <div>
+          Лицензия <a href="https://sweb.ru/">№163230</a>
+        </div>
       </div>
       <div className={styles.apps}>
         <span className={styles.label}>Скачать приложение</span>
@@ -23,9 +27,18 @@ export default function Footer() {
         </ul>
       </div>
       <div className={styles.phones}>
-        <div>+7 (812) 334-12-22 (в Санкт-Петербурге)</div>
-        <div>+7 (495) 663-16-12 (в Москве)</div>
-        <div>+7 (800) 100-16-15 (бесплатно по России)</div>
+        <div>
+          <a href="tel:78123341222">+7 (812) 334-12-22</a>
+          {` `}(в Санкт-Петербурге)
+        </div>
+        <div>
+          <a href="tel:74956631612">+7 (495) 663-16-12</a>
+          {` `}(в Москве)
+        </div>
+        <div>
+          <a href="tel:78001001615">+7 (800) 100-16-15</a>
+          {` `}(бесплатно по России)
+        </div>
       </div>
     </footer>
   );
