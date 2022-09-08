@@ -1,7 +1,7 @@
 import Sidemenu from "./Sidemenu/Sidemenu";
 
 import styles from "./Layout.module.scss";
-import Header from "./Header";
+import Header from "./Header/Header";
 import { useState } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

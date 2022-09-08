@@ -1,8 +1,8 @@
 import styles from "./Header.module.scss";
 
-import { ReactComponent as Notice } from "../../assets/notice.svg";
-import HamburgerButton from "./Sidemenu/HamburgerButton";
-import useWindowSize from "../../hooks/useWindowSize";
+import { ReactComponent as Notice } from "../../../assets/notice.svg";
+import HamburgerButton from "../Sidemenu/HamburgerButton";
+import useWindowSize from "../../../hooks/useWindowSize";
 
 export default function Header({
   isMinimized,
