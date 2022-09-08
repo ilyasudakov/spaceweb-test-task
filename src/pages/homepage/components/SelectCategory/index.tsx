@@ -4,19 +4,25 @@ import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../../../store";
 import { selectCategory } from "./categoryAction";
 
-function SelectCategory({ categories, selectCategory }: Props) {
+function SelectCategory({ categories, selectCategory, selected }: Props) {
   return (
     <SelectInput
       label="Категория"
       options={categories}
-      defaultValue={categories[0]}
+      defaultValue={{
+        value: selected,
+        label: categories.find(({ value }) => value === selected)?.label,
+      }}
       onChange={({ value }) => selectCategory(value)}
     />
   );
 }
 
 const connector = connect(
-  (state: RootState) => ({ categories: state.categories.categories }),
+  (state: RootState) => ({
+    categories: state.categories.categories,
+    selected: state.categories.selected,
+  }),
   {
     selectCategory,
   }
