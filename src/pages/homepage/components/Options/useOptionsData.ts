@@ -1,10 +1,12 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectOptions } from "./optionsReducer";
 import { fetchOptions } from "./optionsActions";
 import { selectCategories } from "../SelectCategory/categoryReducer";
+import { AppDispatch } from "../../../../store";
 
 export default function useOptionsData() {
+  const dispatch = useDispatch<AppDispatch>();
   const { data, status } = useSelector(selectOptions);
   const { selected } = useSelector(selectCategories);
   const { vpsPlans, selectOs, selectPanel } = data;
@@ -12,7 +14,7 @@ export default function useOptionsData() {
   useEffect(() => {
     console.log(status, data);
     if (status === "idle") {
-      fetchOptions();
+      dispatch(fetchOptions());
     }
   }, [data]);
 

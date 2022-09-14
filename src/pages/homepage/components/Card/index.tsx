@@ -1,4 +1,4 @@
-import Button from "../../../../components/Form/Button/Button";
+import Button from "../../../../components/Form/Button";
 import SelectInput from "../../../../components/Form/SelectInput";
 import styles from "./Card.module.scss";
 import React, { useState } from "react";
