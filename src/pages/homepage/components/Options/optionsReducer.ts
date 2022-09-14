@@ -1,7 +1,10 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { RootState } from "../../../../store";
 import { OPTIONS_ACTIONS } from "./optionsActions";
 
 type statusTypes = "idle" | "loading" | "success" | "error";
+
+export const selectOptions = (state: RootState) => state.options;
 
 export type OptionsStateType = {
   data: {

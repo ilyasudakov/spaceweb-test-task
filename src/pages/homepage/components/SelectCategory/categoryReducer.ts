@@ -1,4 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { RootState } from "../../../../store";
 import { CATEGORY_SELECTED } from "./categoryAction";
 
 export const categories = ["все", "nvme", "hdd", "turbo"] as const;
@@ -28,3 +29,5 @@ export default function categoryReducer(
       return { ...state };
   }
 }
+
+export const selectCategories = (state: RootState) => state.categories;
