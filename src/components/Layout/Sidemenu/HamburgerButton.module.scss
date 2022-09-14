@@ -1,0 +1,13 @@
+.container {
+    display: grid;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.2rem;
+
+    .line {
+        width: 20px;
+        height: 2px;
+        background: #fff;
+        border-radius: 1px;
+    }
+}
